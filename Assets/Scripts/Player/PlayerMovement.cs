@@ -20,6 +20,11 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 movement = new Vector3(input.x, 0f, input.y);
 
-        transform.Translate(movement * moveSpeed * Time.deltaTime);
+        if (movement != Vector3.zero)
+        {
+            transform.forward = movement;
+        }
+
+        transform.Translate(movement * moveSpeed * Time.deltaTime,  Space.World);
     }
 }
