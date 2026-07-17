@@ -1,22 +1,22 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
     
-    [SerializeField]
-    private float moveSpeed = 5f;
+    [SerializeField] private float moveSpeed = 5f;
 
-    private InputAction moveAction;
+    [SerializeField] private InputReader inputReader;
 
-    private void Awake()
+    private IInputReader reader;
+
+    public void Awake()
     {
-        moveAction = InputSystem.actions.FindAction("Player/Move");
+        reader = inputReader;
     }
     
     void Update()
     {
-        Vector2 input = moveAction.ReadValue<Vector2>();
+        Vector2 input = reader.Movement;
 
         Vector3 movement = new Vector3(input.x, 0f, input.y);
 
